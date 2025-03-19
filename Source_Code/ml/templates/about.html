@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire and Smoke Detection Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .about-project {
+            background-color: #ffffff;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .about-project h2 {
+            font-size: 28px;
+            color: #007bff;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: colorChange 2s infinite alternate;
+        }
+
+        .about-project p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .subheading {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            animation: colorChange 2s infinite alternate;
+        }
+
+        .project-images {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .project-image {
+            width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-image:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #ff5733;
+            }
+            50% {
+                color: #33cc33;
+            }
+            100% {
+                color: #007bff;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- About the Project Section -->
+    <div class="about-project">
+        <h2>About the Project</h2>
+        <p>
+            This project focuses on developing a robust system for detecting fire and smoke in images using deep learning techniques. The primary objective is to build a model that can automatically identify and classify instances of fire and smoke in real-time, which is crucial for preventing disasters and ensuring safety in various environments such as forests, cities, and industrial areas.
+        </p>
+        <p>
+            The model employs powerful convolutional neural networks (CNNs), leveraging pre-trained models like VGG16, InceptionV3, and Xception through transfer learning. This approach allows the model to effectively learn from vast amounts of data and generalize well to new unseen data. By evaluating the model's performance through various metrics, we ensure its effectiveness and accuracy in detecting both fire and smoke across a range of conditions and settings.
+        </p>
+    </div>
+
+    <!-- Project Details -->
+    <div class="subheading">Project Overview</div>
+    <p style="text-align:center;">
+        The system uses advanced machine learning algorithms to classify images into categories of 'Fire'and 'No Fire'. The project is designed to work effectively with images obtained from different sources, including satellite images, cameras, and drones, providing a comprehensive solution to wildfire detection.
+    </p>
+
+    <!-- Project Images -->
+    <div class="project-images">
+        <img src="static\images\deep.png" alt="Deep Learning Model" class="project-image">
+        <img src="static\images\fire.jpeg" alt="Fire Detection" class="project-image">
+        <img src="static\images\no fire.jpeg" alt="No fire Detection" class="project-image">
+        
+    </div>
+
+    <footer><a href="{{ url_for('home') }}">Go Back to Home</a></footer>
+</body>
+</html>

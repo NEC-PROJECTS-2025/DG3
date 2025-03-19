@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Project Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center items vertically */
+            position: relative; /* Relative positioning for absolute children */
+            overflow: hidden; /* Hide overflow for animation effect */
+        }
+        header img {
+            max-width: 350px; /* Adjust size as needed */
+            height: auto; /* Maintain aspect ratio */
+            position: absolute; /* Position it absolutely */
+            top: 10px; /* Adjust the top position */
+            left: 10px; /* Adjust the left position */
+        }
+        header h1 {
+            text-align: left; /* Align text to the left */
+            margin-left: 420px; /* Adjust this value to move the title to the right */
+            margin-bottom: 5px; /* Space between title and nav bar */
+            font-size: 24px; /* Title font size */
+            position: relative; /* Required for the animation */
+            animation: bounce 3s ease-in-out infinite; /* Apply the bouncing animation */
+        }
+        header p {
+            text-align: left; /* Align text to the left */
+            margin-left: 170px; /* Align with title */
+            font-size: 18px; /* Team members font size */
+            margin-top: 0; /* Remove top margin for tighter spacing */
+        }
+        nav {
+            display: flex;
+            background-color: #333;
+            justify-content: space-around;
+            padding: 10px 0;
+            margin-top: 0; /* No extra space above the nav */
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        nav a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+        main {
+            background-image: url('{{ url_for("static", filename="images/bg13.jpeg") }}');
+            background-size: cover;
+            background-position: center;
+            padding: 150px;
+            text-align: center;
+            image-rendering: auto; 
+            
+        }
+        main h1, main p {
+                 margin-left: 400px; /* Additional spacing for the text itself */
+        }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Keyframes for bounce animation */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(0); /* Start and end at original position */
+            }
+            50% {
+                transform: translateX(30px); /* Move to the right by 30px */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/nec1.png') }}" alt="College Logo"> <!-- College Logo -->
+        <h1>Deep Learning Framework For Forest Fire And Smoke Detection</h1>
+        <p>Team Members: 1. Kata Ramya | 2. Chennupati Jyothika | 3. Kota Supriya | 4. Kondabathini Vydurya</p>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About Project</a>
+        <a href="/predictions">Predictions</a>
+        <a href="/metrics">Model Evaluation Metrics</a>
+        <a href="/flowchart">Project Flowchart</a>
+    </nav>
+    <main>
+        
+
+        <h1>Welcome to the Project</h1>
+        <p>Click on the navigation links to explore more about the project, predictions, and metrics.</p>
+    </main>
+    
+</body>
+</html>

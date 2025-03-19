@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Project Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            background-image: url('/static/images/bg16.jpeg'); /* Update path */
+            background-size: cover;
+            background-position: center;
+        }
+        form {
+            background: rgb(133, 75, 126);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="registerForm">
+        <h2>Register</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <div class="message" id="message"></div>
+        <button type="submit">Register</button>
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+
+    </form>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const messageElement = document.getElementById('message');
+
+            messageElement.textContent = ''; // Clear previous messages
+
+            // Validation
+            if (username.trim() === '') {
+                messageElement.textContent = 'Username cannot be empty.';
+                return;
+            }
+            if (password !== confirmPassword) {
+                messageElement.textContent = 'Passwords do not match.';
+                return;
+            }
+            if (password.length < 6) {
+                messageElement.textContent = 'Password must be at least 6 characters long.';
+                return;
+            }
+
+            // Save user data to local storage
+            const user = {
+                username: username,
+                password: password
+            };
+            localStorage.setItem('user', JSON.stringify(user));
+            alert("Registration successful! You can now log in."); // Alert message on successful registration
+            window.location.href = "/"; // Redirect to login page
+        });
+    </script>
+</body>
+</html>

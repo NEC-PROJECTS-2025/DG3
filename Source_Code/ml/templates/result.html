@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full height of the viewport */
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0; /* Remove default margin */
+            background-image: url('/static/bg4.jpeg'); /* Replace with your background image URL */
+            background-size: cover; /* Cover the entire body */
+            background-position: center; /* Center the background image */
+        }
+        .container {
+            width: 50%; /* Container width (50% of the viewport) */
+            max-width: 500px; /* Max container width */
+            text-align: center; /* Center text inside the container */
+            background-color: rgb(55, 134, 112); /* Background color for the container */
+            padding: 10px; /* Padding inside the container */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+        img {
+            width: 80%; /* Image width (80% of the container) */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 200px; /* Set a maximum height for the image */
+            border: 2px solid #ccc; /* Border for the image */
+            border-radius: 5px; /* Rounded corners for the image */
+            margin: 10px 0; /* Margin around the image */
+        }
+        h1, p {
+            margin: 8px; /* Margin for heading and paragraph */
+        }
+        a {
+            display: inline-block; /* Ensure link is treated as a block element */
+            text-decoration: none; /* Remove underline from links */
+            color: blue; /* Link color */
+            font-size: 16px; /* Font size for links */
+            margin-top: 10px; /* Margin above the link */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p>Predicted Label: <strong>{{ predicted_label }}</strong></p>
+        <img src="{{ url_for('static', filename='uploads/' + image_file) }}" alt="Uploaded Image">
+        <a href="/">Upload another image</a>
+    </div>
+</body>
+</html>

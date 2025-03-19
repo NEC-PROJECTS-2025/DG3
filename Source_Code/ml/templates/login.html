@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Project Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #5e5fb6;
+            background-image: url('/static/images/bg8.jpeg'); /* Update path */
+            background-size: cover;
+            background-position: center;
+        }
+        form {
+            background: rgb(76, 143, 188);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-image: url('/static/images/form-bg.png'); /* Your image for the form background */
+            background-size: cover; /* Cover the form area with the image */
+            background-position: center; /* Center the background image */
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="loginForm">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <div class="message" id="message"></div>
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+
+            if (!storedUser) {
+                document.getElementById('message').textContent = 'No registered users found. Please register first.';
+                return;
+            }
+
+            if (storedUser.username === username && storedUser.password === password) {
+                // Redirect to home page
+                window.location.href = "/home";
+            } else {
+                document.getElementById('message').textContent = 'Invalid username or password.';
+            }
+        });
+    </script>
+</body>
+</html>

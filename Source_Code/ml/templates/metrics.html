@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Evaluation Metrics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .metrics-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .metric-box {
+            background-color: #ffffff;
+            border: 2px solid #18a841;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .metric-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .metric-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .metric-description {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .metric-content {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+            text-align: left;
+        }
+
+        .metric-content ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .metric-box {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>Model Evaluation Metrics</h1>
+    <div class="metrics-container">
+        <div class="metric-box">
+            <div class="metric-title">Accuracy</div>
+            <div class="metric-description">Percentage of correct predictions out of all predictions.</div>
+            <div class="metric-content">
+                <p>It is a basic measure of how well the model performs overall.</p>
+                <ul>
+                    <li>Accuracy = (TP + TN) / (TP + TN + FP + FN)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title">Precision</div>
+            <div class="metric-description">Proportion of positive predictions that are actually correct.</div>
+            <div class="metric-content">
+                <p>It focuses on the false positives and evaluates the correctness of the positive class prediction.</p>
+                <ul>
+                    <li>Precision = TP / (TP + FP)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title">Recall</div>
+            <div class="metric-description">Ability of the model to correctly identify all positive instances.</div>
+            <div class="metric-content">
+                <p>It assesses the model's ability to capture all relevant positive cases.</p>
+                <ul>
+                    <li>Recall = TP / (TP + FN)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title">F1-Score</div>
+            <div class="metric-description">Harmonic mean of precision and recall, balancing both metrics.</div>
+            <div class="metric-content">
+                <p>The F1-score gives a single score to evaluate the model when there is an uneven class distribution.</p>
+                <ul>
+                    <li>F1 = 2 * (Precision * Recall) / (Precision + Recall)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title">Confusion Matrix</div>
+            <div class="metric-description">A table summarizing TP, TN, FP, and FN for model evaluation.</div>
+            <div class="metric-content">
+                <p>This helps in understanding the performance of a classification model in detail.</p>
+                <ul>
+                    <li>True Positive (TP): Correct positive prediction</li>
+                    <li>True Negative (TN): Correct negative prediction</li>
+                    <li>False Positive (FP): Incorrect positive prediction</li>
+                    <li>False Negative (FN): Incorrect negative prediction</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title">AUC-ROC Curve</div>
+            <div class="metric-description">Evaluates the model's ability to distinguish between classes.</div>
+            <div class="metric-content">
+                <p>The AUC (Area Under the Curve) evaluates how well the model discriminates between positive and negative classes.</p>
+                <ul>
+                    <li>AUC > 0.8: Good performance</li>
+                    <li>AUC < 0.5: Model performs worse than random guessing</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title">Log Loss</div>
+            <div class="metric-description">Measures the accuracy of predicted probabilities.</div>
+            <div class="metric-content">
+                <p>Log Loss penalizes incorrect classifications with a higher loss for wrong predictions with high confidence.</p>
+                <ul>
+                    <li>Log Loss = - (1/n) * Σ (y * log(p) + (1 - y) * log(1 - p))</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title">Specificity</div>
+            <div class="metric-description">Proportion of actual negatives correctly identified by the model.</div>
+            <div class="metric-content">
+                <p>Specificity is important for understanding how well the model avoids false positives.</p>
+                <ul>
+                    <li>Specificity = TN / (TN + FP)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer><a href="{{ url_for('home') }}">Go Back to Home</a></footer>
+</body>
+</html>

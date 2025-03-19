@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Image Upload</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            height: 100vh; /* Full height of the viewport */
+            margin: 0; /* Remove default margin */
+            background-color: #841470; /* Fallback color */
+            background-image: url('/static/bg3.jpeg'); /* Replace with your background image URL */
+            background-size: cover; /* Cover the entire body */
+            background-position: center; /* Center the background image */
+        }
+        .upload-container {
+            width: 40%; /* Container width */
+            max-width: 500px; /* Max container width */
+            background-color: rgba(65, 56, 116, 0.9); /* Slightly transparent background */
+            padding: 20px; /* Padding inside the container */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            text-align: center; /* Center text inside the container */
+            z-index: 1; /* Ensure the container is above the background */
+        }
+        input[type="file"] {
+            display: none; /* Hide default file input */
+        }
+        label {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 2px dashed #007bff; /* Dashed border for upload box */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #f9f9f9; /* Light background color */
+            cursor: pointer; /* Pointer cursor for clickable area */
+            margin-bottom: 10px; /* Margin below the label */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+        label:hover {
+            background-color: #e9e9e9; /* Change background color on hover */
+        }
+        button {
+            padding: 10px 15px; /* Padding for button */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #007bff; /* Button color */
+            color: white; /* Text color */
+            cursor: pointer; /* Pointer cursor for button */
+            transition: background-color 0.3s; /* Smooth color transition */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker button color on hover */
+        }
+        .file-name {
+            margin-top: 10px; /* Margin above the file name display */
+            font-size: 20px; /* Font size for file name */
+            color: #8a226e; /* Text color */
+        }
+        .error-message, .warning-message {
+            color: red; /* Error message color */
+            display: none; /* Hide by default */
+            margin-top: 10px; /* Margin above the error message */
+        }
+        .warning-message {
+            color: orange; /* Warning message color */
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Upload an Image</h1>
+        <form action="/predict" method="POST" enctype="multipart/form-data" onsubmit="return validateFile()">
+            <label for="file-upload">Choose an image...</label>
+            <input type="file" id="file-upload" name="file" accept="image/*" required aria-describedby="file-name error-message warning-message">
+            <span class="file-name" id="file-name">No file chosen</span> <!-- Display file name here -->
+            <div class="error-message" id="error-message" role="alert">Please select a file to proceed.</div> <!-- Error message -->
+            <div class="warning-message" id="warning-message" role="alert">No file was selected. Please choose an image.</div> <!-- Warning message -->
+            <button type="submit" id="predictButton" disabled>Predict</button>
+        </form>
+    </div>
+
+    <script>
+        const input = document.getElementById('file-upload');
+        const fileNameDisplay = document.getElementById('file-name');
+        const predictButton = document.getElementById('predictButton');
+        const errorMessage = document.getElementById('error-message');
+        const warningMessage = document.getElementById('warning-message');
+
+        input.addEventListener('change', displayFileName);
+        input.addEventListener('blur', handleBlur); // Handle when the input loses focus
+        
+        function displayFileName() {
+            // Check if a file is selected and display its name
+            if (input.files.length > 0) {
+                fileNameDisplay.textContent = input.files[0].name; // Show the selected file name
+                errorMessage.style.display = 'none'; // Hide error message if a file is chosen
+                warningMessage.style.display = 'none'; // Hide warning message if a file is chosen
+                predictButton.disabled = false; // Enable the predict button
+            } else {
+                fileNameDisplay.textContent = 'No file chosen'; // Reset to default if no file
+                errorMessage.style.display = 'block'; // Show error message if no file
+                predictButton.disabled = true; // Disable the predict button
+            }
+        }
+
+        function handleBlur() {
+            // Display warning if the file input loses focus and no file is selected
+            if (input.files.length === 0) {
+                warningMessage.style.display = 'block'; // Show warning message
+            } else {
+                warningMessage.style.display = 'none'; // Hide warning if a file is selected
+            }
+        }
+
+        function validateFile() {
+            // Check if no file is selected on submit
+            if (input.files.length === 0) {
+                errorMessage.style.display = 'block'; // Show error message
+                fileNameDisplay.textContent = 'No file chosen'; // Ensure message reflects no file chosen
+                warningMessage.style.display = 'none'; // Hide warning message on submit
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+
+        // Set the initial state when the page loads
+        window.onload = function() {
+            fileNameDisplay.textContent = 'No file chosen'; // Default text
+        };
+    </script>
+</body>
+</html>
